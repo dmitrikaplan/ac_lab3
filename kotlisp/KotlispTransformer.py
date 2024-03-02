@@ -23,7 +23,6 @@ from kotlisp.antlr.KotlispParser import KotlispParser
 def transform_kotlisp(kotlisp_context: KotlispParser.KotlispContext) -> bytearray:
     validate_kotlisp(kotlisp_context.children)
     init_addresses()
-    # debug()
     replace_variable_name_to_address()
 
     return to_byte_array()
