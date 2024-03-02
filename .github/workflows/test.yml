@@ -1,5 +1,18 @@
-name: Test Python code
-on: push
+name: Test
+on: [push, workflow_dispatch]
 jobs:
-  test:
-    
+  test_kotlisp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - name: Install Antlr Runtime
+        run: |
+           pip install antlr4-python3-runtime 
+
+
