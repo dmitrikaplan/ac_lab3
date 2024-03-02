@@ -270,7 +270,7 @@ def validate_readline(read_line_context: KotlispParser.Read_lineContext) -> Vari
     var = 0
     while text[var] != "(":
         var += 1
-    type_ = text[var + 1: len(text) - 1]
+    type_ = text[var + 1 : len(text) - 1]
 
     if type_ == "bool":
         generate_load_constant_command(Register.REG2, int_to_binary(Type.BOOLEAN.index))
@@ -318,7 +318,7 @@ def to_byte_array() -> bytearray:
         start = 0
         finish = 7
         for i in range(1, 9):
-            byte = b[start: finish + 1]
+            byte = b[start : finish + 1]
             bytes_.append(int(byte, 2))
             start += 8
             finish += 8
