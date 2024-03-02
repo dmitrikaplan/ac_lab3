@@ -280,3 +280,35 @@ Register file:
 )
 
 ```
+
+
+(fun main(
+        (setq l (list(1, 2, 3, 4, 5, 6)))
+        (setq length (6))
+        (setq sum (0))
+        (dotimes (i length)(
+            (setq sum (+ sum l[i]))
+            )
+        )
+        (print(sum))
+    )
+)
+
+
+
+#### sum_of_list.klp
+
+```sum_0f_list.klp
+(fun main(
+        (setq l (list(1, 2, 3, 4, 5, 6)))
+        (setq length (6))
+        (setq sum (0))
+        (dotimes (i length)(
+            (setq sum (+ sum l[i]))
+            )
+        )
+        (print(sum))
+    )
+)
+
+```
