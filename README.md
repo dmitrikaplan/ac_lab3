@@ -451,4 +451,4 @@ DEBUG:root:96 PRT -> REG2 REG1
 DEBUG:root:99 HLT
 ```
 
-[Golden test](https://github.com/dmitrykap1an/ac_lab3/blob/master/golden/hello_user_name.yml)
+[Golden test](https://github.com/dmitrykap1an/ac_lab3/blob/master/golden/sum_of_list.yml)
