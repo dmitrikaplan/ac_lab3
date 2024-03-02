@@ -112,15 +112,15 @@ class Type(enum.Enum):
 
     @staticmethod
     def get_mapper_by_index(index_of_type: int):
-        for type in list(Type):
-            if type.get_index() == index_of_type:
-                return type.get_mapper()
+        for type_ in list(Type):
+            if type_.get_index() == index_of_type:
+                return type_.get_mapper()
 
     @staticmethod
     def get_type_by_index(index_of_type: int):
-        for type in list(Type):
-            if type.get_index() == index_of_type:
-                return type
+        for type_ in list(Type):
+            if type_.get_index() == index_of_type:
+                return type_
 
     @staticmethod
     def define_type(value: str):

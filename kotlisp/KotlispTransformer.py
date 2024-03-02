@@ -103,9 +103,7 @@ def validate_variable(variable_context: KotlispParser.VariableContext) -> Variab
         variable = check_s_expression(s_expression=variable_context.s_expression())
 
         if variable.type == Type.FUNCTION:
-            raise ParsingException(
-                f"Нельзя использовать переменную с именем {variable_name}, так как существует функция с таким же именем!"
-            )
+            raise ParsingException(f"Нельзя использовать переменную с именем {variable_name}")
 
         if variable.type == Type.STRING or variable.type == Type.LIST:
             raise ParsingException("Нельзя изменять непримитивные типы данных!")
@@ -269,10 +267,10 @@ def validate_print(print_context: KotlispParser.Print_Context) -> Variable:
 
 def validate_readline(read_line_context: KotlispParser.Read_lineContext) -> Variable:
     text = read_line_context.getText()
-    l = 0
-    while text[l] != "(":
-        l += 1
-    type_ = text[l + 1 : len(text) - 1]
+    var = 0
+    while text[var] != "(":
+        var += 1
+    type_ = text[var + 1: len(text) - 1]
 
     if type_ == "bool":
         generate_load_constant_command(Register.REG2, int_to_binary(Type.BOOLEAN.index))
@@ -320,7 +318,7 @@ def to_byte_array() -> bytearray:
         start = 0
         finish = 7
         for i in range(1, 9):
-            byte = b[start : finish + 1]
+            byte = b[start: finish + 1]
             bytes_.append(int(byte, 2))
             start += 8
             finish += 8
@@ -335,16 +333,16 @@ def debug():
     for b in bin:
         flag = True
         if b.isdigit():
-            for l in list(ISA):
-                if l.get_code() == int(b, 2):
+            for var in list(ISA):
+                if var.get_code() == int(b, 2):
                     flag = False
-                    print(hex(index), l.name)
+                    print(hex(index), var.name)
                     continue
 
-            for l in list(Register):
-                if l.get_index_of_register() == int(b, 2):
+            for var in list(Register):
+                if var.get_index_of_register() == int(b, 2):
                     flag = False
-                    print(hex(index), l.name)
+                    print(hex(index), var.name)
         if flag:
             address = "" if not b.isalpha() else addr[b]
             print(hex(index), b, address)

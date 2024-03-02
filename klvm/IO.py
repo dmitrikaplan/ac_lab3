@@ -1,4 +1,4 @@
-import enum
+
 
 from klvm import CPU
 from klvm.Converter import Type
@@ -10,7 +10,7 @@ external_output_device_1 = 0x10003
 external_output_device_2 = 0x10004
 
 
-input_file = None
+input_file = ''
 
 
 class Console:

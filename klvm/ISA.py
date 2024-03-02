@@ -135,7 +135,7 @@ class ISA(enum.Enum):
         {
             "code": 0xF100000000000000,
             "number_of_arguments": 0,
-            "action": lambda cpu, arguments, registers: hlt(cpu, arguments, registers),
+            "action": lambda cpu, arguments, registers: hlt(arguments, registers),
         },
     )  # заканчивает выполнение программы
     SV = (
@@ -496,7 +496,7 @@ def ret(arguments: list[int], registers: list[int]):
     logging.debug(f"{registers[4] - ISA.RET.number_of_arguments} {ISA.RET.name}")
 
 
-def hlt(cpu, arguments: list[int], registers: list[int]):
+def hlt(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.HLT.number_of_arguments:
         raise ArgumentsSizeException("hlt")
 

@@ -28,9 +28,9 @@ def generate_load_command(value: str, register: Register):
 
 @typechecked
 def generate_load_command_for_index(value: str, register: Register):
-    l = re.split("[\[\]]", value)
-    list_name = l[0]
-    index_name = l[1]
+    var = re.split("[\[\]]", value)
+    list_name = var[0]
+    index_name = var[1]
     generate_load_constant_command(Register.REG4, list_name)
     generate_load_command(index_name, Register.REG5)
     generate_binary_command(ISA.ADD, Register.REG4, Register.REG5)

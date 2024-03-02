@@ -19,8 +19,8 @@ class DataPath:
 
 
 class ControlUnit:
-    def __init__(self, data_path: DataPath):
-        self.data_path = data_path
+    def __init__(self, data_path_: DataPath):
+        self.data_path = data_path_
 
     def run(self):
         while is_runnable:
@@ -60,11 +60,11 @@ def read_in_memory(index: int) -> int:
     return memory[index]
 
 
-def init_memory(l: list[int]):
-    for index in range(0, len(l)):
-        memory[index] = l[index]
+def init_memory(var: list[int]):
+    for index in range(0, len(var)):
+        memory[index] = var[index]
 
-    data_path.registers[6] = len(l)
+    data_path.registers[6] = len(var)
 
 
 def start(mem: list[int]):
