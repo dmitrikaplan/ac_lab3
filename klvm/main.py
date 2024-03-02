@@ -1,16 +1,15 @@
 import sys
 
-import CPU
-from Converter import bytes_to_int
-from Exception import ArgsSizeException, ISACommandNotFound, ArgumentsSizeException, ArithmeticException, \
-    RuntimeException
+from klvm import IO, CPU
+from klvm.Converter import bytes_to_int
+from klvm.Exception import ISACommandNotFound, ArgumentsSizeException, RuntimeException, ArithmeticException, \
+    ArgsSizeException
 
 
-def main():
-
+def main(target, input_stream):
     try:
-        validate_args_size(sys.argv)
-        data = read_bin_file(sys.argv[1])
+        data = read_bin_file(target)
+        IO.input_file = input_stream
         CPU.start(data)
     except ISACommandNotFound as exception:
         print(exception.msg, file=sys.stderr)
@@ -22,8 +21,6 @@ def main():
         print(exception.msg, file=sys.stderr)
     except ArgsSizeException as exception:
         print(exception.msg, file=sys.stderr)
-
-
 
 
 def read_bin_file(file_name: str) -> list[int]:
@@ -40,9 +37,11 @@ def read_bin_file(file_name: str) -> list[int]:
 
 
 def validate_args_size(args: list[str]):
-    if len(args) != 2:
+    if len(args) != 3:
         raise ArgsSizeException()
 
 
 if __name__ == '__main__':
-    main()
+    validate_args_size(sys.argv)
+    _, bin_file, input_file = sys.argv
+    main(bin_file, input_file)

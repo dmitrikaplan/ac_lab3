@@ -19,13 +19,13 @@ jobs:
         run: |
           pip install typeguard
 
-      - name: Run Kotlisp
+      - name: Install Pytest
         run: |
-          python3 kotlisp/main.py examples/hello.klp hello
+          pip install pytest-golden
 
-      - name: Run Klvm
+      - name: Run test
         run: |
-          python3 klvm/main.py hello.bin
+          pytest --update-goldens golden-test.py
           
 
 

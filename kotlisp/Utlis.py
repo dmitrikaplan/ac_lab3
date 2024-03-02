@@ -4,9 +4,9 @@ import string
 
 from antlr4.tree.Tree import ParseTree
 
-from Exceptions import ParsingException
-from VM import ISA
-from Variable import Type
+from kotlisp.Exceptions import ParsingException
+from kotlisp.VM import ISA
+from kotlisp.Variable import Type
 
 
 def is_symbol(text: str) -> bool:

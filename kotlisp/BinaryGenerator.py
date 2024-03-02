@@ -2,10 +2,10 @@ import re
 
 from typeguard import typechecked
 
-from Exceptions import ParsingException
-from Utlis import is_index, is_name, define_type, random_string, to_typed_list
-from VM import ISA, Register
-from Variable import Type, Variable
+from kotlisp.Exceptions import ParsingException
+from kotlisp.Utlis import is_index, is_name, define_type, random_string, to_typed_list
+from kotlisp.VM import ISA, Register
+from kotlisp.Variable import Type, Variable
 
 bits = 64
 

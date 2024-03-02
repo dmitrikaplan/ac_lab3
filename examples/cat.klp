@@ -1,5 +1,0 @@
-( fun main(
-        (setq string (read-line(str)))
-        (print(string))
-    )
-)

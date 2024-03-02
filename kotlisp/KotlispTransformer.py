@@ -1,21 +1,21 @@
 from antlr4.tree.Tree import ParseTree
 from typeguard import typechecked
 
-from BinaryGenerator import generate_default_binary_command, int_to_binary, get_bin, generate_load_command, \
+from kotlisp.BinaryGenerator import generate_default_binary_command, int_to_binary, get_bin, generate_load_command, \
     generate_binary_command, generate_load_constant_command, generate_binary_variable, string_to_binary
-from Exceptions import ParsingException
-from Expression import define_math_expression, define_variable
-from Utlis import random_string, is_name, is_string
-from VM import ISA, Register
-from Variable import Variable, Type, get_variables, get_variables_address, exists_variable
-from antlr.KotlispParser import KotlispParser
+from kotlisp.Exceptions import ParsingException
+from kotlisp.Expression import define_math_expression, define_variable
+from kotlisp.Utlis import random_string, is_name, is_string
+from kotlisp.VM import ISA, Register
+from kotlisp.Variable import Variable, Type, get_variables, get_variables_address, exists_variable
+from kotlisp.antlr.KotlispParser import KotlispParser
 
 
 @typechecked
 def transform_kotlisp(kotlisp_context: KotlispParser.KotlispContext) -> bytearray:
     validate_kotlisp(kotlisp_context.children)
     init_addresses()
-    debug()
+    #debug()
     replace_variable_name_to_address()
 
     return to_byte_array()

@@ -1,6 +1,6 @@
 import enum
 
-from Variable import Type
+from kotlisp.Variable import Type
 
 external_device = 0x10000
 

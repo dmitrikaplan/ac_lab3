@@ -3,26 +3,22 @@ import sys
 from antlr4 import FileStream, CommonTokenStream
 from typeguard import typechecked
 
-from Exceptions import InvalidFileNameException, VariableNotFoundException, ArithmeticException, ParsingException, \
+from kotlisp.Exceptions import InvalidFileNameException, VariableNotFoundException, ArithmeticException, ParsingException, \
     ArgsSizeException
-from KotlispTransformer import transform_kotlisp
-from antlr.KotlispLexer import KotlispLexer
-from antlr.KotlispParser import KotlispParser
+from kotlisp.KotlispTransformer import transform_kotlisp
+from kotlisp.antlr.KotlispLexer import KotlispLexer
+from kotlisp.antlr.KotlispParser import KotlispParser
 
 
-def main():
+def main(source, target):
     try:
-        validate_args_length(sys.argv)
-        input_file_name = sys.argv[1]
-        output_file_name = sys.argv[2]
-        validate_file_name(sys.argv[1])
-        file_stream = FileStream(input_file_name)
+        file_stream = FileStream(source)
         lexer = KotlispLexer(file_stream)
         stream = CommonTokenStream(lexer)
         parser = KotlispParser(stream)
         kotlisp: KotlispParser.KotlispContext = parser.kotlisp()
         byte_array = transform_kotlisp(kotlisp)
-        write_bin(byte_array, output_file_name)
+        write_bin(byte_array, target)
 
     except InvalidFileNameException as exception:
         print(exception.msg, file=sys.stderr)
@@ -54,4 +50,7 @@ def write_bin(byte_array: bytearray, file_name: str):
 
 
 if __name__ == '__main__':
-    main()
+    validate_args_length(sys.argv)
+    _, source, target = sys.argv
+    validate_file_name(source)
+    main(source, target)

@@ -1,13 +1,16 @@
 import enum
 
-import CPU
-from Converter import int_to_string, to_sign_int, Type, exist_null_terminator
+from klvm import CPU
+from klvm.Converter import Type
 
 external_input_device_1 = 0x10000
 external_input_device_2 = 0x10001
 external_input_device_3 = 0x10002
 external_output_device_1 = 0x10003
 external_output_device_2 = 0x10004
+
+
+input_file = None
 
 
 class Console:
@@ -35,10 +38,12 @@ class Console:
                 i += 1
 
     def read(self):
-        line = input()
-        type_ = Type.define_type(line)
-        self.queue = type_.reverse_mapper(line)
-        CPU.write_to_memory(external_input_device_1, type_.index)
+        with open(input_file, encoding="utf-8") as file:
+            line = "".join(file.readlines())
+            print(line)
+            type_ = Type.define_type(line)
+            self.queue = type_.reverse_mapper(line)
+            CPU.write_to_memory(external_input_device_1, type_.index)
 
     def has_next(self) -> bool:
         return self.index < len(self.queue)

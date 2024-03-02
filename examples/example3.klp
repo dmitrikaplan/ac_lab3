@@ -1,5 +1,0 @@
-(fun main(
-        (setq a ("123"))
-        (print(a))
-    )
-)

@@ -1,0 +1,3 @@
+source: (fun main( (print("hello world")) ) )
+stdin: ''
+stdout: hello world

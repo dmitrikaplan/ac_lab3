@@ -2,7 +2,7 @@ import enum
 
 from typeguard import typechecked
 
-from Exceptions import VariableNotFoundException
+from kotlisp.Exceptions import VariableNotFoundException
 
 
 class Type(enum.Enum):

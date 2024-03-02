@@ -1,13 +1,13 @@
 from antlr4.tree.Tree import ParseTree
 from typeguard import typechecked
 
-from BinaryGenerator import get_bin, generate_load_command, generate_binary_command, generate_load_constant_command, \
+from kotlisp.BinaryGenerator import get_bin, generate_load_command, generate_binary_command, generate_load_constant_command, \
     int_to_binary
-from Exceptions import ParsingException, ArithmeticException
-from Utlis import is_symbol, to_text, is_name, is_string, is_index, to_typed_list, define_type, is_list
-from VM import Register, get_action_by_character, ISA, get_command_by_character
-from Variable import Variable, Type, find_variable
-from antlr.KotlispParser import KotlispParser
+from kotlisp.Exceptions import ParsingException, ArithmeticException
+from kotlisp.Utlis import is_symbol, to_text, is_name, is_string, is_index, to_typed_list, define_type, is_list
+from kotlisp.VM import Register, get_action_by_character, ISA, get_command_by_character
+from kotlisp.Variable import Variable, Type, find_variable
+from kotlisp.antlr.KotlispParser import KotlispParser
 
 
 def define_math_expression(math_expression: KotlispParser.Math_expressionContext) -> Variable:

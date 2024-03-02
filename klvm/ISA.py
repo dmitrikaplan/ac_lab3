@@ -1,9 +1,8 @@
 import enum
 
-import CPU
-import IO
-from Converter import to_sign_int, to_unsigned_int, Type, exist_null_terminator
-from Exception import ArgumentsSizeException, ArithmeticException, RuntimeException
+from klvm import CPU, IO
+from klvm.Converter import to_sign_int, to_unsigned_int, exist_null_terminator, Type
+from klvm.Exception import ArgumentsSizeException, ArithmeticException, RuntimeException
 
 
 class ISA(enum.Enum):

@@ -1,6 +1,6 @@
-from Exception import ISACommandNotFound
-from ISA import ISA
-from Memory import memory
+from klvm.Exception import ISACommandNotFound
+from klvm.ISA import ISA
+from klvm.Memory import memory
 
 
 def get_memory_size() -> int:

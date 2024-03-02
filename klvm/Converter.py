@@ -1,6 +1,6 @@
 import enum
 
-from Exception import RuntimeException
+from klvm.Exception import RuntimeException
 
 
 def to_sign_int(unsigned_int: int) -> int:
