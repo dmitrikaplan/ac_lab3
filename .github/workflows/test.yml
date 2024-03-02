@@ -15,4 +15,13 @@ jobs:
         run: |
            pip install antlr4-python3-runtime 
 
+      - name: Run Kotlisp
+        run: |
+          python3 kotlisp/main.py examples/hello.klp hello
+
+      - name: Run Klvm
+        run: |
+          python3 klvm/main.py hello.bin
+          
+
 
