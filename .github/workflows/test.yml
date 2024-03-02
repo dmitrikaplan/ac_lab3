@@ -15,6 +15,10 @@ jobs:
         run: |
            pip install antlr4-python3-runtime 
 
+      - name: Install Typeguard
+        run: |
+          pip install typeguard
+
       - name: Run Kotlisp
         run: |
           python3 kotlisp/main.py examples/hello.klp hello
