@@ -1,0 +1,11 @@
+(fun main(
+        (setq l (list(1, 2, 3, 4, 5, 6)))
+        (setq length (6))
+        (setq sum (0))
+        (dotimes (i length)(
+            (setq sum (+ sum l[i]))
+            )
+        )
+        (print(sum))
+    )
+)

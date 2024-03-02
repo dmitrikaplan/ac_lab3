@@ -1,0 +1,49 @@
+(fun main(
+       (setq result (1))
+       (setq getNokResult (0))
+       (dotimes (j 19) (
+                (setq argumentOneGetNok (result))
+                (setq argumentTwoGetNok (+ j 2))
+                (getNok())
+                (setq result (getNokResult))
+            )
+       )
+       (print(result))
+    )
+)
+
+(fun getNok(
+       (setq argumentOneGetNod (argumentOneGetNok))
+       (setq argumentTwoGetNod (argumentTwoGetNok))
+       (setq getNodResult (0))
+       (getNod())
+       (setq getNokResult (* argumentOneGetNok argumentTwoGetNok))
+       (setq getNokResult (/ getNokResult getNodResult))
+    )
+)
+
+(fun getNod (
+        (setq length (1))
+        (dotimes (i length) (
+
+                (if(> argumentOneGetNod argumentTwoGetNod)
+                    (setq argumentOneGetNod (% argumentOneGetNod argumentTwoGetNod))
+                    (setq argumentTwoGetNod (% argumentTwoGetNod argumentOneGetNod))
+                )
+
+                (if(& argumentOneGetNod argumentTwoGetNod)
+                    (setq length (+ length 1))
+                    (
+
+                        (setq getNodResult (if(> argumentOneGetNod argumentTwoGetNod)
+                            (argumentOneGetNod)
+                            (argumentTwoGetNod)
+                            )
+                        )
+                        (setq length (0))
+                    )
+                )
+            )
+        )
+    )
+)

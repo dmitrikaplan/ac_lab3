@@ -1,0 +1,5 @@
+name: Test Python code
+on: push
+jobs:
+  test:
+    

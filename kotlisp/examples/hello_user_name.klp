@@ -1,0 +1,10 @@
+(fun main(
+        (print ("> What is your name?\n"))
+        (print("< "))
+        (setq name (read-line(str)))
+        (print ("> Hello, "))
+        (print (name))
+        (print ("!\n"))
+
+    )
+)
