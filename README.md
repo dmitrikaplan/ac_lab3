@@ -11,7 +11,7 @@ LISP-подобный язык, статическая типизация,
 kotlisp : fun*;
 fun : OP 'fun' NAME s_expression CP;
 
-s_expression: OP (variable | loop | conditional | fun_call | print_ | math_expression | read_line)? s_expression* CP;
+s_expression: OP (variable | loop | conditional | fun_call | print_ | math_expression | read_line | s_expression)* CP;
 
 math_expression : ((STRING | list_ | NUMBER | NAME | BOOLEAN  | index)
                         |
