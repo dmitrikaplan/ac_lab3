@@ -30,11 +30,11 @@ class Console:
             line = mapper(data)
             i = 0
             while i < len(line):
-                if line[i] == '\\' and i + 1 < len(line) and line[i + 1] == 'n':
+                if line[i] == "\\" and i + 1 < len(line) and line[i + 1] == "n":
                     print()
                     i += 1
                 else:
-                    print(line[i], end='')
+                    print(line[i], end="")
                 i += 1
 
     def read(self):

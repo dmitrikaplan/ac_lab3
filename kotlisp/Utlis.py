@@ -18,7 +18,7 @@ def is_symbol(text: str) -> bool:
 
 
 def is_number(text: str) -> bool:
-    start_index = 1 if (text[0] == '-') else 0
+    start_index = 1 if (text[0] == "-") else 0
     for i in range(start_index, len(text)):
         if not text[i].isdigit():
             return False
@@ -29,7 +29,7 @@ def is_string(text: str) -> bool:
     if text[0] != '"' or text[-1] != '"':
         return False
 
-    symbols = ['?', '!', '>', '<', ',', '.', '\\', ' ']
+    symbols = ["?", "!", ">", "<", ",", ".", "\\", " "]
 
     for index in range(1, len(text) - 1):
         if not text[index].isdigit() and not text[index].isalpha() and text[index] not in symbols:
@@ -50,7 +50,7 @@ def is_name(text: str) -> bool:
 
 
 def is_boolean(text: str) -> bool:
-    return text == 'true' or text == 'false'
+    return text == "true" or text == "false"
 
 
 def is_index(text: str) -> bool:
@@ -59,14 +59,14 @@ def is_index(text: str) -> bool:
 
 
 def is_list(text: str) -> bool:
-    return len(text) > 6 and text[:4] == 'list'
+    return len(text) > 6 and text[:4] == "list"
 
 
 def to_typed_list(l: str) -> tuple[list[str], Type]:
-    left = index_of(l, '(')
-    right = index_of(l, ')')
+    left = index_of(l, "(")
+    right = index_of(l, ")")
 
-    values = list(map(lambda x: x.strip(), l[left + 1: right].split(',')))
+    values = list(map(lambda x: x.strip(), l[left + 1 : right].split(",")))
 
     return values, define_type(values[0])
 
@@ -76,10 +76,10 @@ def to_text(parseTree: ParseTree) -> str:
         return parseTree.getText()
 
     i = 0
-    string = ''
+    string = ""
 
     child_count = parseTree.getChildCount()
-    while i < child_count and parseTree.getChild(i).getText() != '(':
+    while i < child_count and parseTree.getChild(i).getText() != "(":
         string += parseTree.getChild(i).getText()
         i += 1
 
@@ -91,17 +91,17 @@ def to_text(parseTree: ParseTree) -> str:
     string += parseTree.getChild(i).getText()
     i += 1
 
-    while parseTree.getChild(i).getText() != ')':
-        string += ','
+    while parseTree.getChild(i).getText() != ")":
+        string += ","
         string += parseTree.getChild(i).getText()
         i += 1
 
-    return string + ')'
+    return string + ")"
 
 
 def random_string(length: int = 32):
     letters = string.ascii_lowercase
-    return ''.join(random.choice(letters) for i in range(length))
+    return "".join(random.choice(letters) for i in range(length))
 
 
 def index_of(s: str, ch: str) -> int:
@@ -128,4 +128,4 @@ def define_type(value: str) -> Type:
     if is_list(value):
         return Type.LIST
 
-    raise ParsingException('Ошибка определения переменной!')
+    raise ParsingException("Ошибка определения переменной!")

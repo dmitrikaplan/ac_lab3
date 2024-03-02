@@ -6,34 +6,16 @@ from kotlisp.Exceptions import VariableNotFoundException
 
 
 class Type(enum.Enum):
-    NUMBER = {
-        'default_value': '0',
-        'index': 0
-    },
-    BOOLEAN = {
-        'default_value': 'false',
-        'index': 1
-    }
-    STRING = {
-        'default_value': '',
-        'index': 2
-    }
-    LIST = {
-        'default_value': '(0)',
-        'index': 3
-    }
-    FUNCTION = {
-        'default_value': '',
-        'index': 4
-    }
-    UNIT = {
-        'default_value': 'Unit',
-        'index': 2
-    }
+    NUMBER = ({"default_value": "0", "index": 0},)
+    BOOLEAN = {"default_value": "false", "index": 1}
+    STRING = {"default_value": "", "index": 2}
+    LIST = {"default_value": "(0)", "index": 3}
+    FUNCTION = {"default_value": "", "index": 4}
+    UNIT = {"default_value": "Unit", "index": 2}
 
     def __init__(self, vals):
-        self.default_value = vals['default_value']
-        self.index = vals['index']
+        self.default_value = vals["default_value"]
+        self.index = vals["index"]
 
     def get_default_value(self):
         return self.default_value

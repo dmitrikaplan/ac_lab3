@@ -1,8 +1,13 @@
 from antlr4.tree.Tree import ParseTree
 from typeguard import typechecked
 
-from kotlisp.BinaryGenerator import get_bin, generate_load_command, generate_binary_command, generate_load_constant_command, \
-    int_to_binary
+from kotlisp.BinaryGenerator import (
+    get_bin,
+    generate_load_command,
+    generate_binary_command,
+    generate_load_constant_command,
+    int_to_binary,
+)
 from kotlisp.Exceptions import ParsingException, ArithmeticException
 from kotlisp.Utlis import is_symbol, to_text, is_name, is_string, is_index, to_typed_list, define_type, is_list
 from kotlisp.VM import Register, get_action_by_character, ISA, get_command_by_character
@@ -24,7 +29,7 @@ def define_math_expression(math_expression: KotlispParser.Math_expressionContext
             variable=variable,
             action=get_action_by_character(symbol.getText()),
             command=get_command_by_character(symbol.getText()),
-            bin=bin
+            bin=bin,
         )
 
         return variable
@@ -38,12 +43,12 @@ def define_math_expression(math_expression: KotlispParser.Math_expressionContext
 
 @typechecked
 def compute_expression(
-        math_expression: KotlispParser.Math_expressionContext,
-        index_of_child: int,
-        variable: Variable,
-        action,
-        command: ISA,
-        bin: list[str]
+    math_expression: KotlispParser.Math_expressionContext,
+    index_of_child: int,
+    variable: Variable,
+    action,
+    command: ISA,
+    bin: list[str],
 ):
     if index_of_child > math_expression.getChildCount() - 1:
         if command in [ISA.EQ, ISA.NEQ, ISA.GR, ISA.GREQ, ISA.LS, ISA.LSEQ]:
@@ -59,7 +64,7 @@ def compute_expression(
 
     if variable.type == Type.LIST:
         if not compare_immutable_types(command, variable, second_variable):
-            return Variable('false', Type.BOOLEAN)
+            return Variable("false", Type.BOOLEAN)
     else:
         generate_load_command(next_value.getText(), Register.REG2)
         generate_binary_command(command, Register.REG1, Register.REG2)
@@ -70,7 +75,7 @@ def compute_expression(
         variable=variable,
         action=action,
         command=command,
-        bin=bin
+        bin=bin,
     )
 
 
@@ -82,7 +87,7 @@ def define_variable(parseTree: ParseTree, bin: list[str]) -> Variable:
         return find_variable(text)
 
     if is_string(text):
-        replaced_text = text.replace('"', '')
+        replaced_text = text.replace('"', "")
         return Variable(replaced_text, Type.STRING)
 
     if is_index(text):
@@ -100,7 +105,7 @@ def validate_index(index_context: KotlispParser.IndexContext, bin: list[str]) ->
         index_variable = define_variable(index_context.NAME(1), bin)
 
     if index_variable.type != Type.NUMBER:
-        raise ParsingException('Индекс должен быть представлен числом!')
+        raise ParsingException("Индекс должен быть представлен числом!")
 
     type_: Type = to_typed_list(define_variable(index_context.NAME(0), bin).value)[1]
 

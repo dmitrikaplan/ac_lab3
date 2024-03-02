@@ -4,8 +4,13 @@ from antlr4 import CommonTokenStream
 from antlr4.FileStream import FileStream
 from typeguard import typechecked
 
-from kotlisp.Exceptions import InvalidFileNameException, VariableNotFoundException, ArithmeticException, \
-    ParsingException, ArgsSizeException
+from kotlisp.Exceptions import (
+    InvalidFileNameException,
+    VariableNotFoundException,
+    ArithmeticException,
+    ParsingException,
+    ArgsSizeException,
+)
 from kotlisp.KotlispTransformer import transform_kotlisp
 from kotlisp.antlr.KotlispLexer import KotlispLexer
 from kotlisp.antlr.KotlispParser import KotlispParser
@@ -35,7 +40,7 @@ def main(source, target):
 
 @typechecked
 def validate_file_name(file_name: str):
-    if not file_name.endswith('.klp'):
+    if not file_name.endswith(".klp"):
         raise InvalidFileNameException()
 
 
@@ -46,11 +51,11 @@ def validate_args_length(args: list[str]):
 
 
 def write_bin(byte_array: bytearray, file_name: str):
-    with open(file_name, 'wb') as f:
+    with open(file_name, "wb") as f:
         f.write(byte_array)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     validate_args_length(sys.argv)
     _, source, target = sys.argv
     validate_file_name(source)

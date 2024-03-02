@@ -19,7 +19,6 @@ class DataPath:
 
 
 class ControlUnit:
-
     def __init__(self, data_path: DataPath):
         self.data_path = data_path
 

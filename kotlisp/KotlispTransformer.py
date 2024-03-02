@@ -1,8 +1,16 @@
 from antlr4.tree.Tree import ParseTree
 from typeguard import typechecked
 
-from kotlisp.BinaryGenerator import generate_default_binary_command, int_to_binary, get_bin, generate_load_command, \
-    generate_binary_command, generate_load_constant_command, generate_binary_variable, string_to_binary
+from kotlisp.BinaryGenerator import (
+    generate_default_binary_command,
+    int_to_binary,
+    get_bin,
+    generate_load_command,
+    generate_binary_command,
+    generate_load_constant_command,
+    generate_binary_variable,
+    string_to_binary,
+)
 from kotlisp.Exceptions import ParsingException
 from kotlisp.Expression import define_math_expression, define_variable
 from kotlisp.Utlis import random_string, is_name, is_string
@@ -15,7 +23,7 @@ from kotlisp.antlr.KotlispParser import KotlispParser
 def transform_kotlisp(kotlisp_context: KotlispParser.KotlispContext) -> bytearray:
     validate_kotlisp(kotlisp_context.children)
     init_addresses()
-    #debug()
+    # debug()
     replace_variable_name_to_address()
 
     return to_byte_array()
@@ -27,8 +35,8 @@ def validate_kotlisp(children: list[KotlispParser.FunContext]):
     variables_addresses = get_variables_address()
     bin = get_bin()
 
-    if children[0].NAME().getText() != 'main':
-        raise ParsingException('Программа должна начинаться с функции main!')
+    if children[0].NAME().getText() != "main":
+        raise ParsingException("Программа должна начинаться с функции main!")
 
     for child in children:
         function_name = child.NAME().getText()
@@ -59,7 +67,6 @@ def check_s_expression(s_expression: KotlispParser.S_expressionContext) -> Varia
 @typechecked
 def validate_s_expression(parseTree: ParseTree) -> Variable:
     match parseTree:
-
         case parseTree if isinstance(parseTree, KotlispParser.VariableContext):
             return validate_variable(parseTree)
 
@@ -91,14 +98,14 @@ def validate_variable(variable_context: KotlispParser.VariableContext) -> Variab
     variable_name = variable_context.getChild(1).getText()
 
     if exists_variable(variable_name):
-
         prev_variable: Variable = variables[variable_name]
 
         variable = check_s_expression(s_expression=variable_context.s_expression())
 
         if variable.type == Type.FUNCTION:
             raise ParsingException(
-                f'Нельзя использовать переменную с именем {variable_name}, так как существует функция с таким же именем!')
+                f"Нельзя использовать переменную с именем {variable_name}, так как существует функция с таким же именем!"
+            )
 
         if variable.type == Type.STRING or variable.type == Type.LIST:
             raise ParsingException("Нельзя изменять непримитивные типы данных!")
@@ -107,7 +114,7 @@ def validate_variable(variable_context: KotlispParser.VariableContext) -> Variab
             raise ParsingException("Нельзя менять тип переменной!")
 
         if variable.type == Type.UNIT:
-            generate_load_constant_command(Register.REG1, string_to_binary('Unit')[0])
+            generate_load_constant_command(Register.REG1, string_to_binary("Unit")[0])
 
         generate_load_constant_command(Register.REG2, variable_name)
         generate_binary_command(ISA.SV, Register.REG2, Register.REG1)
@@ -117,7 +124,7 @@ def validate_variable(variable_context: KotlispParser.VariableContext) -> Variab
         variable = check_s_expression(s_expression=variable_context.s_expression())
 
         if variable.type == Type.UNIT:
-            generate_load_constant_command(Register.REG1, string_to_binary('Unit')[0])
+            generate_load_constant_command(Register.REG1, string_to_binary("Unit")[0])
 
         variables[variable_name] = variable
 
@@ -139,9 +146,9 @@ def validate_loop(loop_context: KotlispParser.LoopContext) -> Variable:
     bin = get_bin()
 
     if exists_variable(index):
-        raise ParsingException(f'Переменная с именем {index} уже была объявлена!')
+        raise ParsingException(f"Переменная с именем {index} уже была объявлена!")
 
-    variables[index] = Variable('0', Type.NUMBER)
+    variables[index] = Variable("0", Type.NUMBER)
     counter_name = None
 
     if loop_context.NAME(1) is not None:
@@ -206,10 +213,10 @@ def validate_conditional(conditional_context: KotlispParser.ConditionalContext) 
     variables[address_of_branch_after_cond] = Variable(str(len(bin)), Type.NUMBER)
 
     if variable_if_else.type != variable_if_true.type:
-        raise ParsingException('Несовпадают типы возвращаемых значений!')
+        raise ParsingException("Несовпадают типы возвращаемых значений!")
 
     if variable_if_else.type == Type.STRING or variable_if_else.type == Type.LIST:
-        raise ParsingException('Невозможно вернуть из условия if иммутабельные структуры данных')
+        raise ParsingException("Невозможно вернуть из условия if иммутабельные структуры данных")
 
     if variable_if_else.type != Type.UNIT:
         return variable_if_else
@@ -251,7 +258,7 @@ def validate_print(print_context: KotlispParser.Print_Context) -> Variable:
     if argument.type == Type.UNIT:
         variables = get_variables()
         variable_name = random_string()
-        variables[variable_name] = Variable('Unit', Type.STRING)
+        variables[variable_name] = Variable("Unit", Type.STRING)
         generate_load_constant_command(Register.REG1, variable_name)
 
     generate_load_constant_command(Register.REG2, int_to_binary(argument.type.index))
@@ -263,15 +270,15 @@ def validate_print(print_context: KotlispParser.Print_Context) -> Variable:
 def validate_readline(read_line_context: KotlispParser.Read_lineContext) -> Variable:
     text = read_line_context.getText()
     l = 0
-    while text[l] != '(':
+    while text[l] != "(":
         l += 1
-    type_ = text[l + 1: len(text) - 1]
+    type_ = text[l + 1 : len(text) - 1]
 
-    if type_ == 'bool':
+    if type_ == "bool":
         generate_load_constant_command(Register.REG2, int_to_binary(Type.BOOLEAN.index))
         generate_binary_command(ISA.RDL, Register.REG2)
         return Variable(Type.BOOLEAN.default_value, Type.BOOLEAN)
-    if type_ == 'int':
+    if type_ == "int":
         generate_load_constant_command(Register.REG2, int_to_binary(Type.NUMBER.index))
         generate_binary_command(ISA.RDL, Register.REG2)
         return Variable(Type.NUMBER.default_value, Type.NUMBER)
@@ -313,7 +320,7 @@ def to_byte_array() -> bytearray:
         start = 0
         finish = 7
         for i in range(1, 9):
-            byte = b[start: finish + 1]
+            byte = b[start : finish + 1]
             bytes_.append(int(byte, 2))
             start += 8
             finish += 8
@@ -339,7 +346,7 @@ def debug():
                     flag = False
                     print(hex(index), l.name)
         if flag:
-            address = '' if not b.isalpha() else addr[b]
+            address = "" if not b.isalpha() else addr[b]
             print(hex(index), b, address)
 
         index += 1

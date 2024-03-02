@@ -15,9 +15,9 @@ def test_kotlisp(golden, caplog):
     caplog.set_level(logging.DEBUG)
 
     with tempfile.TemporaryDirectory() as temp_dir_name:
-        source_code = os.path.join(temp_dir_name, 'input.klp')
+        source_code = os.path.join(temp_dir_name, "input.klp")
         input = os.path.join(temp_dir_name, "temp.txt")
-        target = os.path.join(temp_dir_name, 'target.bin')
+        target = os.path.join(temp_dir_name, "target.bin")
 
         print(target)
 
@@ -34,5 +34,3 @@ def test_kotlisp(golden, caplog):
 
         assert stdout.getvalue() == golden.out["stdout"]
         assert caplog.text == golden.out["logs"]
-
-        print(caplog.text)

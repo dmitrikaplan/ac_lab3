@@ -3,8 +3,13 @@ import sys
 
 from klvm import IO, CPU
 from klvm.Converter import bytes_to_int
-from klvm.Exception import ISACommandNotFound, ArgumentsSizeException, RuntimeException, ArithmeticException, \
-    ArgsSizeException
+from klvm.Exception import (
+    ISACommandNotFound,
+    ArgumentsSizeException,
+    RuntimeException,
+    ArithmeticException,
+    ArgsSizeException,
+)
 
 
 def main(target, input_stream):
@@ -27,7 +32,7 @@ def main(target, input_stream):
 def read_bin_file(file_name: str) -> list[int]:
     result: list[int] = []
 
-    with open(file_name, 'rb') as f:
+    with open(file_name, "rb") as f:
         byte = 1
         while byte:
             byte = list(f.read(8))
@@ -42,7 +47,7 @@ def validate_args_size(args: list[str]):
         raise ArgsSizeException()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     validate_args_size(sys.argv)
     _, bin_file, input_file = sys.argv
     logging.getLogger().setLevel(logging.DEBUG)

@@ -63,6 +63,7 @@ def generate_binary_command(command: ISA, *registers: Register):
 
 def generate_load_command_for_constant(value: str, register: Register):
     from kotlisp.KotlispTransformer import get_variables
+
     type_: Type = define_type(value)
     variables = get_variables()
 
@@ -73,15 +74,14 @@ def generate_load_command_for_constant(value: str, register: Register):
 
     if type_ == Type.BOOLEAN:
         return generate_load_constant_command(
-            register=register,
-            address=(int_to_binary(1) if (value == 'true') else int_to_binary(0))
+            register=register, address=(int_to_binary(1) if (value == "true") else int_to_binary(0))
         )
 
     if type_ == Type.NUMBER:
         return generate_load_constant_command(register, int_to_binary(int(value)))
 
     else:
-        raise ParsingException('Ошибка парсинга!')
+        raise ParsingException("Ошибка парсинга!")
 
 
 def generate_binary_variable(variable: Variable):
@@ -97,18 +97,15 @@ def generate_binary_variable(variable: Variable):
             binary.append(string)
 
     if variable.type == Type.UNIT:
-        binary.append(string_to_binary('Unit')[0])
+        binary.append(string_to_binary("Unit")[0])
 
     if variable.type == Type.LIST:
         list_, type_ = to_typed_list(variable.value)
 
         for elem in list_:
-
             if type_ == Type.STRING:
-                replaced_elem = elem.replace('"', '')
-                return generate_binary_variable(
-                    Variable(replaced_elem, Type.STRING)
-                )
+                replaced_elem = elem.replace('"', "")
+                return generate_binary_variable(Variable(replaced_elem, Type.STRING))
 
             else:
                 generate_binary_variable(Variable(elem, type_))
@@ -118,11 +115,11 @@ def generate_binary_variable(variable: Variable):
 def int_to_binary(value: int, size: int = bits) -> str:
     mask = (1 << size) - 1
     if value < 0:
-        value = ((abs(value) ^ mask) + 1)
+        value = (abs(value) ^ mask) + 1
         return bin(value & mask)[2:]
 
     binary_representation = bin(value & mask)[2:]
-    return (size - len(binary_representation)) * '0' + bin(value & mask)[2:]
+    return (size - len(binary_representation)) * "0" + bin(value & mask)[2:]
 
 
 @typechecked
@@ -136,20 +133,17 @@ def register_to_binary(register: Register, size: int = bits) -> str:
 
 
 def boolean_to_binary(value: bool, size: int = bits) -> str:
-    return int_to_binary(
-        value=1 if (bool(value)) else 0,
-        size=size
-    )
+    return int_to_binary(value=1 if (bool(value)) else 0, size=size)
 
 
 def string_to_binary(value: str) -> list[str]:
     list_of_symbols: list[str] = []
     result: list[str] = []
-    for x in bytearray(value, 'utf-8'):
+    for x in bytearray(value, "utf-8"):
         list_of_symbols.append(int_to_binary(x, 8))
 
     index = 0
-    builder = ''
+    builder = ""
 
     while index < len(list_of_symbols) - (len(list_of_symbols) % 8):
         builder += list_of_symbols[index]
@@ -157,13 +151,13 @@ def string_to_binary(value: str) -> list[str]:
 
         if index % 8 == 0:
             result.append(builder)
-            builder = ''
+            builder = ""
 
     while index < len(list_of_symbols):
         builder += list_of_symbols[index]
         index += 1
 
-    builder += '0' * 8 * (8 - index % 8)
+    builder += "0" * 8 * (8 - index % 8)
     result.append(builder)
 
     return result
