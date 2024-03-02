@@ -1,3 +1,5 @@
 source: (fun main( (print("hello world")) ) )
 stdin: ''
-stdout: hello world
+stdout: |-
+  ============================================================
+  hello world

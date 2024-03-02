@@ -45,7 +45,7 @@ def validate_args_length(args: list[str]):
 
 
 def write_bin(byte_array: bytearray, file_name: str):
-    with open(file_name + '.bin', 'wb') as f:
+    with open(file_name, 'wb') as f:
         f.write(byte_array)
 
 

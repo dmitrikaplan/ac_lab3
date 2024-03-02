@@ -32,8 +32,4 @@ def test_kotlisp(golden, caplog):
             print("============================================================")
             klvm.main.main(target, input)
 
-        with open(target, encoding="utf-8") as file:
-            bin = file.read()
-
         assert stdout.getvalue() == golden.out["stdout"]
-        print(golden.out["stdout"])
