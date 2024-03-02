@@ -34,6 +34,7 @@ index : NAME '[' (NUMBER | NAME) ']';
 print_: 'print' s_expression;
 
 read_line: 'read-line' OP ('int' | 'str' | 'bool') CP;
+
 PLUS : '+';
 MINUS : '-';
 MULT : '*';
