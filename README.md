@@ -310,6 +310,8 @@ Register file:
 ### Работа алгоритма 
 
 ## бинарный код
+![Bin code](./img/bin1.jpg)
+![Bin code2](./img/bin2.jpg)
 
 
 ## debug
