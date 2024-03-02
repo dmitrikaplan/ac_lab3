@@ -1,5 +1,14 @@
-source: (fun main( (print("hello world")) ) )
-stdin: ''
+source: |-
+  (fun main
+    ( 
+      (print("hello world")) 
+    ) 
+  )
+stdin: '123'
 stdout: |-
-  ============================================================
   hello world
+logs: |-
+  DEBUG:root:1 LDC -> REG1 10
+  DEBUG:root:4 LDC -> REG2 2
+  DEBUG:root:7 PRT -> REG2 REG1
+  DEBUG:root:10 HLT

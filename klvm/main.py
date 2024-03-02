@@ -1,3 +1,4 @@
+import logging
 import sys
 
 from klvm import IO, CPU
@@ -44,4 +45,5 @@ def validate_args_size(args: list[str]):
 if __name__ == '__main__':
     validate_args_size(sys.argv)
     _, bin_file, input_file = sys.argv
+    logging.getLogger().setLevel(logging.DEBUG)
     main(bin_file, input_file)

@@ -1,0 +1,3171 @@
+source: |-
+  (fun main(
+       (setq result (1))
+       (setq getNokResult (0))
+       (dotimes (j 19) (
+                (setq argumentOneGetNok (result))
+                (setq argumentTwoGetNok (+ j 2))
+                (getNok())
+                (setq result (getNokResult))
+            )
+       )
+       (print(result))
+    )
+  )
+
+  (fun getNok(
+       (setq argumentOneGetNod (argumentOneGetNok))
+       (setq argumentTwoGetNod (argumentTwoGetNok))
+       (setq getNodResult (0))
+       (getNod())
+       (setq getNokResult (* argumentOneGetNok argumentTwoGetNok))
+       (setq getNokResult (/ getNokResult getNodResult))
+    )
+  )
+
+  (fun getNod (
+        (setq length (1))
+        (dotimes (i length) (
+
+                (if(> argumentOneGetNod argumentTwoGetNod)
+                    (setq argumentOneGetNod (% argumentOneGetNod argumentTwoGetNod))
+                    (setq argumentTwoGetNod (% argumentTwoGetNod argumentOneGetNod))
+                )
+
+                (if(& argumentOneGetNod argumentTwoGetNod)
+                    (setq length (+ length 1))
+                    (
+
+                        (setq getNodResult (if(> argumentOneGetNod argumentTwoGetNod)
+                            (argumentOneGetNod)
+                            (argumentTwoGetNod)
+                            )
+                        )
+                        (setq length (0))
+                    )
+                )
+            )
+        )
+    )
+  )
+stdin: '123'
+stdout: |-
+  232792560
+
+
+logs: |
+  DEBUG   ISA:ldc           1 LDC -> REG1 1
+  DEBUG   ISA:ldc           4 LDC -> REG2 438
+  DEBUG   ISA:sv            7 SV -> REG2 REG1
+  DEBUG   ISA:ldc           10 LDC -> REG1 0
+  DEBUG   ISA:ldc           13 LDC -> REG2 439
+  DEBUG   ISA:sv            16 SV -> REG2 REG1
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           365 LDC -> REG3 444
+  DEBUG   ISA:ld            368 LD -> REG1 REG3
+  DEBUG   ISA:ldc           371 LDC -> REG3 453
+  DEBUG   ISA:ld            374 LD -> REG2 REG3
+  DEBUG   ISA:jmp           377 JMP -> REG2
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           270 LDC -> REG3 445
+  DEBUG   ISA:ld            273 LD -> REG1 REG3
+  DEBUG   ISA:ldc           276 LDC -> REG3 444
+  DEBUG   ISA:ld            279 LD -> REG2 REG3
+  DEBUG   ISA:mod           282 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           285 LDC -> REG2 445
+  DEBUG   ISA:sv            288 SV -> REG2 REG1
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           315 LDC -> REG3 447
+  DEBUG   ISA:ld            318 LD -> REG1 REG3
+  DEBUG   ISA:ldc           321 LDC -> REG2 1
+  DEBUG   ISA:add           324 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           327 LDC -> REG2 447
+  DEBUG   ISA:sv            330 SV -> REG2 REG1
+  DEBUG   ISA:ldc           333 LDC -> REG3 454
+  DEBUG   ISA:ld            336 LD -> REG2 REG3
+  DEBUG   ISA:jmp           339 JMP -> REG2
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:brpl          214 BRPL -> REG2
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:brpl          16 BRPL -> REG2
+  DEBUG   ISA:ldc           19 LDC -> REG3 438
+  DEBUG   ISA:ld            22 LD -> REG1 REG3
+  DEBUG   ISA:ldc           25 LDC -> REG2 442
+  DEBUG   ISA:sv            28 SV -> REG2 REG1
+  DEBUG   ISA:ldc           31 LDC -> REG3 440
+  DEBUG   ISA:ld            34 LD -> REG1 REG3
+  DEBUG   ISA:ldc           37 LDC -> REG2 2
+  DEBUG   ISA:add           40 ADD ->REG1  + REG2
+  DEBUG   ISA:ldc           43 LDC -> REG2 443
+  DEBUG   ISA:sv            46 SV -> REG2 REG1
+  DEBUG   ISA:ldc           49 LDC -> REG1 121
+  DEBUG   ISA:ldc           52 LDC -> REG2 58
+  DEBUG   ISA:push          55 PUSH -> REG2
+  DEBUG   ISA:push          57 PUSH -> IP
+  DEBUG   ISA:call          120 CALL -> REG1
+  DEBUG   ISA:ldc           122 LDC -> REG3 442
+  DEBUG   ISA:ld            125 LD -> REG1 REG3
+  DEBUG   ISA:ldc           128 LDC -> REG2 444
+  DEBUG   ISA:sv            131 SV -> REG2 REG1
+  DEBUG   ISA:ldc           134 LDC -> REG3 443
+  DEBUG   ISA:ld            137 LD -> REG1 REG3
+  DEBUG   ISA:ldc           140 LDC -> REG2 445
+  DEBUG   ISA:sv            143 SV -> REG2 REG1
+  DEBUG   ISA:ldc           146 LDC -> REG1 0
+  DEBUG   ISA:ldc           149 LDC -> REG2 446
+  DEBUG   ISA:sv            152 SV -> REG2 REG1
+  DEBUG   ISA:ldc           155 LDC -> REG1 207
+  DEBUG   ISA:ldc           158 LDC -> REG2 164
+  DEBUG   ISA:push          161 PUSH -> REG2
+  DEBUG   ISA:push          163 PUSH -> IP
+  DEBUG   ISA:call          206 CALL -> REG1
+  DEBUG   ISA:ldc           208 LDC -> REG1 1
+  DEBUG   ISA:ldc           211 LDC -> REG2 447
+  DEBUG   ISA:sv            214 SV -> REG2 REG1
+  DEBUG   ISA:ldc           217 LDC -> REG3 444
+  DEBUG   ISA:ld            220 LD -> REG1 REG3
+  DEBUG   ISA:ldc           223 LDC -> REG3 445
+  DEBUG   ISA:ld            226 LD -> REG2 REG3
+  DEBUG   ISA:gr            229 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           232 LDC -> REG3 449
+  DEBUG   ISA:ld            235 LD -> REG2 REG3
+  DEBUG   ISA:brmn          238 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           241 LDC -> REG3 444
+  DEBUG   ISA:ld            244 LD -> REG1 REG3
+  DEBUG   ISA:ldc           247 LDC -> REG3 445
+  DEBUG   ISA:ld            250 LD -> REG2 REG3
+  DEBUG   ISA:mod           253 MOD -> REG1 % REG2
+  DEBUG   ISA:ldc           256 LDC -> REG2 444
+  DEBUG   ISA:sv            259 SV -> REG2 REG1
+  DEBUG   ISA:ldc           262 LDC -> REG3 450
+  DEBUG   ISA:ld            265 LD -> REG2 REG3
+  DEBUG   ISA:jmp           268 JMP -> REG2
+  DEBUG   ISA:ldc           291 LDC -> REG3 444
+  DEBUG   ISA:ld            294 LD -> REG1 REG3
+  DEBUG   ISA:ldc           297 LDC -> REG3 445
+  DEBUG   ISA:ld            300 LD -> REG2 REG3
+  DEBUG   ISA:and_command   303 AND -> REG1  & REG2
+  DEBUG   ISA:ldc           306 LDC -> REG3 451
+  DEBUG   ISA:ld            309 LD -> REG2 REG3
+  DEBUG   ISA:brmn          312 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           341 LDC -> REG3 444
+  DEBUG   ISA:ld            344 LD -> REG1 REG3
+  DEBUG   ISA:ldc           347 LDC -> REG3 445
+  DEBUG   ISA:ld            350 LD -> REG2 REG3
+  DEBUG   ISA:gr            353 GR -> REG1 > REG2
+  DEBUG   ISA:ldc           356 LDC -> REG3 452
+  DEBUG   ISA:ld            359 LD -> REG2 REG3
+  DEBUG   ISA:brmn          362 BRMN -> REG1 REG2
+  DEBUG   ISA:ldc           379 LDC -> REG3 445
+  DEBUG   ISA:ld            382 LD -> REG1 REG3
+  DEBUG   ISA:ldc           385 LDC -> REG2 446
+  DEBUG   ISA:sv            388 SV -> REG2 REG1
+  DEBUG   ISA:ldc           391 LDC -> REG1 0
+  DEBUG   ISA:ldc           394 LDC -> REG2 447
+  DEBUG   ISA:sv            397 SV -> REG2 REG1
+  DEBUG   ISA:ldc           400 LDC -> REG3 448
+  DEBUG   ISA:ld            403 LD -> REG1 REG3
+  DEBUG   ISA:inc           406 INC -> REG1  + 1
+  DEBUG   ISA:ldc           408 LDC -> REG2 448
+  DEBUG   ISA:sv            411 SV -> REG2 REG1
+  DEBUG   ISA:ldc           414 LDC -> REG3 447
+  DEBUG   ISA:ld            417 LD -> REG2 REG3
+  DEBUG   ISA:sub           420 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           423 LDC -> REG1 216
+  DEBUG   ISA:ldc           429 LDC -> REG1 448
+  DEBUG   ISA:ldc           432 LDC -> REG2 0
+  DEBUG   ISA:sv            435 SV -> REG1 REG2
+  DEBUG   ISA:ret           164 RET
+  DEBUG   ISA:ldc           165 LDC -> REG3 442
+  DEBUG   ISA:ld            168 LD -> REG1 REG3
+  DEBUG   ISA:ldc           171 LDC -> REG3 443
+  DEBUG   ISA:ld            174 LD -> REG2 REG3
+  DEBUG   ISA:mul           177 MUL -> REG1 * REG2
+  DEBUG   ISA:ldc           180 LDC -> REG2 439
+  DEBUG   ISA:sv            183 SV -> REG2 REG1
+  DEBUG   ISA:ldc           186 LDC -> REG3 439
+  DEBUG   ISA:ld            189 LD -> REG1 REG3
+  DEBUG   ISA:ldc           192 LDC -> REG3 446
+  DEBUG   ISA:ld            195 LD -> REG2 REG3
+  DEBUG   ISA:idiv          198 IDIV -> REG1  / REG2
+  DEBUG   ISA:ldc           201 LDC -> REG2 439
+  DEBUG   ISA:sv            204 SV -> REG2 REG1
+  DEBUG   ISA:ret           58 RET
+  DEBUG   ISA:ldc           59 LDC -> REG3 439
+  DEBUG   ISA:ld            62 LD -> REG1 REG3
+  DEBUG   ISA:ldc           65 LDC -> REG2 438
+  DEBUG   ISA:sv            68 SV -> REG2 REG1
+  DEBUG   ISA:ldc           71 LDC -> REG3 440
+  DEBUG   ISA:ld            74 LD -> REG1 REG3
+  DEBUG   ISA:inc           77 INC -> REG1  + 1
+  DEBUG   ISA:ldc           79 LDC -> REG2 440
+  DEBUG   ISA:sv            82 SV -> REG2 REG1
+  DEBUG   ISA:ldc           85 LDC -> REG3 441
+  DEBUG   ISA:ld            88 LD -> REG2 REG3
+  DEBUG   ISA:sub           91 SUB -> REG2 - REG1
+  DEBUG   ISA:ldc           94 LDC -> REG1 18
+  DEBUG   ISA:ldc           100 LDC -> REG1 440
+  DEBUG   ISA:ldc           103 LDC -> REG2 0
+  DEBUG   ISA:sv            106 SV -> REG1 REG2
+  DEBUG   ISA:ldc           109 LDC -> REG3 438
+  DEBUG   ISA:ld            112 LD -> REG1 REG3
+  DEBUG   ISA:ldc           115 LDC -> REG2 0
+  DEBUG   ISA:prt           118 PRT -> REG2 REG1
+  DEBUG   ISA:hlt           121 HLT

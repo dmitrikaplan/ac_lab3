@@ -1,10 +1,11 @@
 import sys
 
-from antlr4 import FileStream, CommonTokenStream
+from antlr4 import CommonTokenStream
+from antlr4.FileStream import FileStream
 from typeguard import typechecked
 
-from kotlisp.Exceptions import InvalidFileNameException, VariableNotFoundException, ArithmeticException, ParsingException, \
-    ArgsSizeException
+from kotlisp.Exceptions import InvalidFileNameException, VariableNotFoundException, ArithmeticException, \
+    ParsingException, ArgsSizeException
 from kotlisp.KotlispTransformer import transform_kotlisp
 from kotlisp.antlr.KotlispLexer import KotlispLexer
 from kotlisp.antlr.KotlispParser import KotlispParser

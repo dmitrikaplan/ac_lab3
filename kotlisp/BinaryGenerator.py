@@ -62,7 +62,7 @@ def generate_binary_command(command: ISA, *registers: Register):
 
 
 def generate_load_command_for_constant(value: str, register: Register):
-    from KotlispTransformer import get_variables
+    from kotlisp.KotlispTransformer import get_variables
     type_: Type = define_type(value)
     variables = get_variables()
 

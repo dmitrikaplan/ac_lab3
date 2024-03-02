@@ -1,4 +1,5 @@
 import enum
+import logging
 
 from klvm import CPU, IO
 from klvm.Converter import to_sign_int, to_unsigned_int, exist_null_terminator, Type
@@ -183,6 +184,9 @@ def add(arguments: list[int], registers: list[int]):
     arg2 = to_sign_int(registers[arguments[1]])
     result = to_unsigned_int(arg1 + arg2)
 
+    logging.debug(f'{registers[4] - ISA.ADD.number_of_arguments} {ISA.ADD.name} ->'
+                  f'{get_register_name_by_index(arguments[0])}  + {get_register_name_by_index(arguments[1])}')
+
     if result > 0xffffffffffffffff:
         raise ArithmeticException()
 
@@ -197,6 +201,9 @@ def sub(arguments: list[int], registers: list[int]):
     arg2 = to_sign_int(registers[arguments[1]])
     result = to_unsigned_int(arg1 - arg2)
 
+    logging.debug(f'{registers[4] - ISA.SUB.number_of_arguments} {ISA.SUB.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} - {get_register_name_by_index(arguments[1])}')
+
     if result > 0xffffffffffffffff:
         raise ArithmeticException()
 
@@ -206,6 +213,9 @@ def sub(arguments: list[int], registers: list[int]):
 def mul(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.MUL.number_of_arguments:
         raise ArgumentsSizeException('mul')
+
+    logging.debug(f'{registers[4] - ISA.MUL.number_of_arguments } {ISA.MUL.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} * {get_register_name_by_index(arguments[1])}')
 
     arg1 = to_sign_int(registers[arguments[0]])
     arg2 = to_sign_int(registers[arguments[1]])
@@ -225,6 +235,9 @@ def idiv(arguments: list[int], registers: list[int]):
     arg2 = to_sign_int(registers[arguments[1]])
     result = to_unsigned_int(int(arg1 / arg2))
 
+    logging.debug(f'{registers[4] - ISA.IDIV.number_of_arguments} {ISA.IDIV.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}  / {get_register_name_by_index(arguments[1])}')
+
     if result > 0xffffffffffffffff:
         raise ArithmeticException()
 
@@ -235,12 +248,18 @@ def and_command(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.AND.number_of_arguments:
         raise ArgumentsSizeException('and')
 
+    logging.debug(f'{registers[4] - ISA.AND.number_of_arguments} {ISA.AND.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}  & {get_register_name_by_index(arguments[1])}')
+
     registers[arguments[0]] = registers[arguments[0]] and registers[arguments[1]]
 
 
 def or_command(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.OR.number_of_arguments:
         raise ArgumentsSizeException('or')
+
+    logging.debug(f'{registers[4] - ISA.OR.number_of_arguments} {ISA.OR.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}  | {get_register_name_by_index(arguments[1])}')
 
     registers[arguments[0]] = registers[arguments[0]] or registers[arguments[1]]
 
@@ -249,12 +268,18 @@ def xor(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.XOR.number_of_arguments:
         raise ArgumentsSizeException('xor')
 
+    logging.debug(f'{registers[4] - ISA.XOR.number_of_arguments} {ISA.XOR.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}  ^ {get_register_name_by_index(arguments[1])}')
+
     registers[arguments[0]] = registers[arguments[0]] ^ registers[arguments[1]]
 
 
 def inc(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.INC.number_of_arguments:
         raise ArgumentsSizeException('inc')
+
+    logging.debug(f'{registers[4] - ISA.INC.number_of_arguments} {ISA.INC.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}  + 1')
 
     arg = to_sign_int(registers[arguments[0]])
     result = to_unsigned_int(arg + 1)
@@ -269,6 +294,9 @@ def neg(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.NEG.number_of_arguments:
         raise ArgumentsSizeException('neg')
 
+    logging.debug(f'{registers[4] - ISA.NEG.number_of_arguments} {ISA.NEG.name} -> '
+                  f' -{get_register_name_by_index(arguments[0])}')
+
     arg = to_sign_int(registers[arguments[0]])
     result = to_unsigned_int(-arg)
 
@@ -282,6 +310,9 @@ def eq(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.EQ.number_of_arguments:
         raise ArgumentsSizeException('eq')
 
+    logging.debug(f'{registers[4] - ISA.EQ.number_of_arguments} {ISA.EQ.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} = {get_register_name_by_index(arguments[1])}')
+
     registers[arguments[0]] = 1 if registers[arguments[0]] == registers[arguments[1]] else 0
 
 
@@ -291,6 +322,9 @@ def neq(arguments: list[int], registers: list[int]):
 
     registers[arguments[0]] = 1 if registers[arguments[0]] != registers[arguments[1]] else 0
 
+    logging.debug(f'{registers[4] - ISA.NEQ.number_of_arguments} {ISA.NEQ.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} != {get_register_name_by_index(arguments[1])}')
+
 
 def gr(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.GR.number_of_arguments:
@@ -298,6 +332,9 @@ def gr(arguments: list[int], registers: list[int]):
 
     arg1 = to_sign_int(registers[arguments[0]])
     arg2 = to_sign_int(registers[arguments[1]])
+
+    logging.debug(f'{registers[4] - ISA.GR.number_of_arguments} {ISA.GR.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} > {get_register_name_by_index(arguments[1])}')
 
     registers[arguments[0]] = 1 if arg1 > arg2 else 0
 
@@ -309,6 +346,9 @@ def greq(arguments: list[int], registers: list[int]):
     arg1 = to_sign_int(registers[arguments[0]])
     arg2 = to_sign_int(registers[arguments[1]])
 
+    logging.debug(f'{registers[4] - ISA.GREQ.number_of_arguments} {ISA.GREQ.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} >= {get_register_name_by_index(arguments[1])}')
+
     registers[arguments[0]] = 1 if arg1 >= arg2 else 0
 
 
@@ -318,6 +358,9 @@ def ls(arguments: list[int], registers: list[int]):
 
     arg1 = to_sign_int(registers[arguments[0]])
     arg2 = to_sign_int(registers[arguments[1]])
+
+    logging.debug(f'{registers[4] - ISA.LS.number_of_arguments} {ISA.LS.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}  < {get_register_name_by_index(arguments[1])}')
 
     registers[arguments[0]] = 1 if arg1 < arg2 else 0
 
@@ -331,6 +374,9 @@ def lseq(arguments: list[int], registers: list[int]):
 
     registers[arguments[0]] = 1 if arg1 <= arg2 else 0
 
+    logging.debug(f'{registers[4] - ISA.LSEQ.number_of_arguments} {ISA.LSEQ.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} <= {get_register_name_by_index(arguments[1])}')
+
 
 def push(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.PUSH.number_of_arguments:
@@ -339,12 +385,18 @@ def push(arguments: list[int], registers: list[int]):
     CPU.write_to_memory(registers[5], registers[arguments[0]])
     registers[5] -= 1
 
+    logging.debug(f'{registers[4] - ISA.PUSH.number_of_arguments} {ISA.PUSH.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}')
+
 
 def pop(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.POP.number_of_arguments:
         raise ArgumentsSizeException('pop')
 
     registers[5] += 1
+
+    logging.debug(f'{registers[4] - ISA.POP.number_of_arguments} {ISA.POP.name}')
+
 
 
 def ret(arguments: list[int], registers: list[int]):
@@ -354,6 +406,8 @@ def ret(arguments: list[int], registers: list[int]):
     registers[5] += 1
     registers[4] = CPU.read_in_memory(registers[5] + 1)
 
+    logging.debug(f'{registers[4] - ISA.RET.number_of_arguments} {ISA.RET.name}')
+
 
 def hlt(cpu, arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.HLT.number_of_arguments:
@@ -361,12 +415,16 @@ def hlt(cpu, arguments: list[int], registers: list[int]):
 
     CPU.is_runnable = False
 
+    logging.debug(f'{registers[4] - ISA.HLT.number_of_arguments} {ISA.HLT.name}')
+
 
 def sv(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.SV.number_of_arguments:
         raise ArgumentsSizeException('sv')
 
     CPU.write_to_memory(registers[arguments[0]], registers[arguments[1]])
+    logging.debug(f'{registers[4] - ISA.SV.number_of_arguments} {ISA.SV.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} {get_register_name_by_index(arguments[1])}')
 
 
 def ldc(arguments: list[int], registers: list[int]):
@@ -374,6 +432,8 @@ def ldc(arguments: list[int], registers: list[int]):
         raise ArgumentsSizeException('ldc')
 
     registers[arguments[0]] = arguments[1]
+    logging.debug(f'{registers[4] - ISA.LDC.number_of_arguments} {ISA.LDC.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} {arguments[1]}')
 
 
 def ld(arguments: list[int], registers: list[int]):
@@ -381,6 +441,8 @@ def ld(arguments: list[int], registers: list[int]):
         raise ArgumentsSizeException('ld')
 
     registers[arguments[0]] = CPU.read_in_memory(registers[arguments[1]])
+    logging.debug(f'{registers[4] - ISA.LD.number_of_arguments} {ISA.LD.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} {get_register_name_by_index(arguments[1])}')
 
 
 def mov(arguments: list[int], registers: list[int]):
@@ -388,6 +450,9 @@ def mov(arguments: list[int], registers: list[int]):
         raise ArgumentsSizeException('mov')
 
     registers[arguments[0]] = registers[arguments[1]]
+
+    logging.debug(f'{registers[4] - ISA.MOV.number_of_arguments} {ISA.MOV.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} {get_register_name_by_index(arguments[1])}')
 
 
 def call(cpu, arguments: list[int], registers: list[int]):
@@ -397,12 +462,18 @@ def call(cpu, arguments: list[int], registers: list[int]):
     ISA.PUSH.action(cpu, [4], registers)
     registers[4] = registers[arguments[0]]
 
+    logging.debug(f'{registers[4] - ISA.CALL.number_of_arguments} {ISA.CALL.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}')
+
 
 def brmn(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.BRMN.number_of_arguments:
         raise ArgumentsSizeException('brmn')
 
     arg = to_sign_int(registers[arguments[0]])
+
+    logging.debug(f'{registers[4] - ISA.BRMN.number_of_arguments} {ISA.BRMN.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} {get_register_name_by_index(arguments[1])}')
 
     if arg <= 0:
         registers[4] = registers[arguments[1]]
@@ -411,6 +482,9 @@ def brmn(arguments: list[int], registers: list[int]):
 def jmp(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.JMP.number_of_arguments:
         raise ArgumentsSizeException('jmp')
+
+    logging.debug(f'{registers[4] - ISA.JMP.number_of_arguments} {ISA.JMP.name} -> '
+                  f'{get_register_name_by_index(arguments[0])}')
 
     registers[4] = registers[arguments[0]]
 
@@ -424,6 +498,9 @@ def brpl(arguments: list[int], registers: list[int]):
     if arg > 0:
         registers[4] = registers[arguments[1]]
 
+        logging.debug(f'{registers[4] - ISA.BRPL.number_of_arguments} {ISA.BRPL.name} -> '
+                      f'{get_register_name_by_index(arguments[0])}')
+
 
 def mod(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.MOD.number_of_arguments:
@@ -435,12 +512,20 @@ def mod(arguments: list[int], registers: list[int]):
 
     registers[arguments[0]] = result
 
+    logging.debug(f'{registers[4] - ISA.MOD.number_of_arguments} {ISA.MOD.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} % {get_register_name_by_index(arguments[1])}')
+
+
+
 
 def prt(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.PRT.number_of_arguments:
         raise ArgumentsSizeException('prt')
 
     index_of_type = registers[arguments[0]]
+
+    logging.debug(f'{registers[4] - ISA.PRT.number_of_arguments} {ISA.PRT.name} -> '
+                  f'{get_register_name_by_index(arguments[0])} {get_register_name_by_index(arguments[1])}')
 
     if index_of_type == Type.STRING.index:
 
@@ -472,6 +557,9 @@ def rdl(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.RDL.number_of_arguments:
         raise ArgumentsSizeException('rdl')
 
+    logging.debug(f'{registers[4] - ISA.RDL.number_of_arguments} {ISA.RDL.name} -> '
+                  f'{arguments[0]} {get_register_name_by_index(arguments[1])}')
+
     console = IO.Console()
     console.read()
     type_index = CPU.read_in_memory(IO.external_input_device_1)
@@ -492,3 +580,29 @@ def rdl(arguments: list[int], registers: list[int]):
             registers[6] += 1
 
         ldc([0, string_address], registers)  # в reg1 кладем адрес строки
+
+
+def get_register_name_by_index(index) -> str:
+    if index == 0:
+        return 'REG1'
+
+    if index == 1:
+        return 'REG2'
+
+    if index == 2:
+        return 'REG3'
+
+    if index == 3:
+        return 'REG4'
+
+    if index == 4:
+        return 'IP'
+
+    if index == 5:
+        return 'SP'
+
+    if index == 6:
+        return 'PEP'
+
+    if index == 7:
+        return 'REG5'

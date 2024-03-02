@@ -33,3 +33,6 @@ def test_kotlisp(golden, caplog):
             klvm.main.main(target, input)
 
         assert stdout.getvalue() == golden.out["stdout"]
+        assert caplog.text == golden.out["logs"]
+
+        print(caplog.text)

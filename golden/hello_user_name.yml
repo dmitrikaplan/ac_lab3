@@ -1,0 +1,40 @@
+source: |-
+  (fun main(
+        (print ("> What is your name?\n"))
+        (print("< "))
+        (setq name (read-line(str)))
+        (print ("> Hello, "))
+        (print (name))
+        (print ("!\n"))
+
+    )
+  )
+stdin: Alice
+stdout: |-
+  > What is your name?
+  < Alice
+  > Hello, Alice!
+
+logs: |-
+  DEBUG:root:1 LDC -> REG1 60
+  DEBUG:root:4 LDC -> REG2 2
+  DEBUG:root:7 PRT -> REG2 REG1
+  DEBUG:root:10 LDC -> REG1 63
+  DEBUG:root:13 LDC -> REG2 2
+  DEBUG:root:16 PRT -> REG2 REG1
+  DEBUG:root:19 LDC -> REG2 2
+  DEBUG:root:22 RDL -> REG2
+  DEBUG:root:21 LDC -> REG1 68
+  DEBUG:root:24 LDC -> REG2 64
+  DEBUG:root:27 SV -> REG2 REG1
+  DEBUG:root:30 LDC -> REG1 65
+  DEBUG:root:33 LDC -> REG2 2
+  DEBUG:root:36 PRT -> REG2 REG1
+  DEBUG:root:39 LDC -> REG3 64
+  DEBUG:root:42 LD -> REG1 REG3
+  DEBUG:root:45 LDC -> REG2 2
+  DEBUG:root:48 PRT -> REG2 REG1
+  DEBUG:root:51 LDC -> REG1 67
+  DEBUG:root:54 LDC -> REG2 2
+  DEBUG:root:57 PRT -> REG2 REG1
+  DEBUG:root:60 HLT

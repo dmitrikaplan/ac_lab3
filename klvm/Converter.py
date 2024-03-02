@@ -147,7 +147,6 @@ def is_number(text: str) -> bool:
 
 
 def is_string(text: str) -> bool:
-
     symbols = ['?', '!', '>', '<', ',', '.', '\\', ' ']
 
     for index in range(1, len(text) - 1):

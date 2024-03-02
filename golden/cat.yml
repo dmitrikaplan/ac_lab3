@@ -1,0 +1,22 @@
+source: |-
+  ( fun main(
+          (setq string (read-line(str)))
+          (print(string))
+      )
+  )
+stdin: |-
+  qwe
+stdout: |- 
+  qwe
+
+logs: |-
+  DEBUG:root:1 LDC -> REG2 2
+  DEBUG:root:4 RDL -> REG2
+  DEBUG:root:3 LDC -> REG1 25
+  DEBUG:root:6 LDC -> REG2 24
+  DEBUG:root:9 SV -> REG2 REG1
+  DEBUG:root:12 LDC -> REG3 24
+  DEBUG:root:15 LD -> REG1 REG3
+  DEBUG:root:18 LDC -> REG2 2
+  DEBUG:root:21 PRT -> REG2 REG1
+  DEBUG:root:24 HLT
