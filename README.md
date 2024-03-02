@@ -451,3 +451,4 @@ DEBUG:root:96 PRT -> REG2 REG1
 DEBUG:root:99 HLT
 ```
 
+[Godlen test](https://skillbox.ru/media/)
