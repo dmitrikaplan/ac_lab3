@@ -191,6 +191,12 @@ Register file:
 
 ## Тестирование
 
+- Разработанные тесты проверяют функционал языка на узких местах
+- CI загружает нужные библиотеки для работы, такие как antlr4-runtime, typeguard и тд.
+- Часть линтера была отключена, потому что она жалуется на код, сгенерированный через antlr
+
+
+
 #### hello.klp
 
 ```hello.klp
@@ -278,21 +284,9 @@ Register file:
         )
     )
 )
-
 ```
 
 
-(fun main(
-        (setq l (list(1, 2, 3, 4, 5, 6)))
-        (setq length (6))
-        (setq sum (0))
-        (dotimes (i length)(
-            (setq sum (+ sum l[i]))
-            )
-        )
-        (print(sum))
-    )
-)
 
 
 
@@ -312,3 +306,146 @@ Register file:
 )
 
 ```
+
+### Работа алгоритма 
+
+## бинарный код
+
+
+## debug
+```
+DEBUG:root:1 LDC -> REG1 6
+DEBUG:root:4 LDC -> REG2 105
+DEBUG:root:7 SV -> REG2 REG1
+DEBUG:root:10 LDC -> REG1 0
+DEBUG:root:13 LDC -> REG2 106
+DEBUG:root:16 SV -> REG2 REG1
+DEBUG:root:19 LDC -> REG3 106
+DEBUG:root:22 LD -> REG1 REG3
+DEBUG:root:25 LDC -> REG4 99
+DEBUG:root:28 LDC -> REG3 107
+DEBUG:root:31 LD -> REG5 REG3
+DEBUG:root:34 ADD ->REG4  + REG5
+DEBUG:root:37 LD -> REG2 REG4
+DEBUG:root:40 ADD ->REG1  + REG2
+DEBUG:root:43 LDC -> REG2 106
+DEBUG:root:46 SV -> REG2 REG1
+DEBUG:root:49 LDC -> REG3 107
+DEBUG:root:52 LD -> REG1 REG3
+DEBUG:root:55 INC -> REG1  + 1
+DEBUG:root:57 LDC -> REG2 107
+DEBUG:root:60 SV -> REG2 REG1
+DEBUG:root:63 LDC -> REG3 105
+DEBUG:root:66 LD -> REG2 REG3
+DEBUG:root:69 SUB -> REG2 - REG1
+DEBUG:root:72 LDC -> REG1 18
+DEBUG:root:16 BRPL -> REG2
+DEBUG:root:19 LDC -> REG3 106
+DEBUG:root:22 LD -> REG1 REG3
+DEBUG:root:25 LDC -> REG4 99
+DEBUG:root:28 LDC -> REG3 107
+DEBUG:root:31 LD -> REG5 REG3
+DEBUG:root:34 ADD ->REG4  + REG5
+DEBUG:root:37 LD -> REG2 REG4
+DEBUG:root:40 ADD ->REG1  + REG2
+DEBUG:root:43 LDC -> REG2 106
+DEBUG:root:46 SV -> REG2 REG1
+DEBUG:root:49 LDC -> REG3 107
+DEBUG:root:52 LD -> REG1 REG3
+DEBUG:root:55 INC -> REG1  + 1
+DEBUG:root:57 LDC -> REG2 107
+DEBUG:root:60 SV -> REG2 REG1
+DEBUG:root:63 LDC -> REG3 105
+DEBUG:root:66 LD -> REG2 REG3
+DEBUG:root:69 SUB -> REG2 - REG1
+DEBUG:root:72 LDC -> REG1 18
+DEBUG:root:16 BRPL -> REG2
+DEBUG:root:19 LDC -> REG3 106
+DEBUG:root:22 LD -> REG1 REG3
+DEBUG:root:25 LDC -> REG4 99
+DEBUG:root:28 LDC -> REG3 107
+DEBUG:root:31 LD -> REG5 REG3
+DEBUG:root:34 ADD ->REG4  + REG5
+DEBUG:root:37 LD -> REG2 REG4
+DEBUG:root:40 ADD ->REG1  + REG2
+DEBUG:root:43 LDC -> REG2 106
+DEBUG:root:46 SV -> REG2 REG1
+DEBUG:root:49 LDC -> REG3 107
+DEBUG:root:52 LD -> REG1 REG3
+DEBUG:root:55 INC -> REG1  + 1
+DEBUG:root:57 LDC -> REG2 107
+DEBUG:root:60 SV -> REG2 REG1
+DEBUG:root:63 LDC -> REG3 105
+DEBUG:root:66 LD -> REG2 REG3
+DEBUG:root:69 SUB -> REG2 - REG1
+DEBUG:root:72 LDC -> REG1 18
+DEBUG:root:16 BRPL -> REG2
+DEBUG:root:19 LDC -> REG3 106
+DEBUG:root:22 LD -> REG1 REG3
+DEBUG:root:25 LDC -> REG4 99
+DEBUG:root:28 LDC -> REG3 107
+DEBUG:root:31 LD -> REG5 REG3
+DEBUG:root:34 ADD ->REG4  + REG5
+DEBUG:root:37 LD -> REG2 REG4
+DEBUG:root:40 ADD ->REG1  + REG2
+DEBUG:root:43 LDC -> REG2 106
+DEBUG:root:46 SV -> REG2 REG1
+DEBUG:root:49 LDC -> REG3 107
+DEBUG:root:52 LD -> REG1 REG3
+DEBUG:root:55 INC -> REG1  + 1
+DEBUG:root:57 LDC -> REG2 107
+DEBUG:root:60 SV -> REG2 REG1
+DEBUG:root:63 LDC -> REG3 105
+DEBUG:root:66 LD -> REG2 REG3
+DEBUG:root:69 SUB -> REG2 - REG1
+DEBUG:root:72 LDC -> REG1 18
+DEBUG:root:16 BRPL -> REG2
+DEBUG:root:19 LDC -> REG3 106
+DEBUG:root:22 LD -> REG1 REG3
+DEBUG:root:25 LDC -> REG4 99
+DEBUG:root:28 LDC -> REG3 107
+DEBUG:root:31 LD -> REG5 REG3
+DEBUG:root:34 ADD ->REG4  + REG5
+DEBUG:root:37 LD -> REG2 REG4
+DEBUG:root:40 ADD ->REG1  + REG2
+DEBUG:root:43 LDC -> REG2 106
+DEBUG:root:46 SV -> REG2 REG1
+DEBUG:root:49 LDC -> REG3 107
+DEBUG:root:52 LD -> REG1 REG3
+DEBUG:root:55 INC -> REG1  + 1
+DEBUG:root:57 LDC -> REG2 107
+DEBUG:root:60 SV -> REG2 REG1
+DEBUG:root:63 LDC -> REG3 105
+DEBUG:root:66 LD -> REG2 REG3
+DEBUG:root:69 SUB -> REG2 - REG1
+DEBUG:root:72 LDC -> REG1 18
+DEBUG:root:16 BRPL -> REG2
+DEBUG:root:19 LDC -> REG3 106
+DEBUG:root:22 LD -> REG1 REG3
+DEBUG:root:25 LDC -> REG4 99
+DEBUG:root:28 LDC -> REG3 107
+DEBUG:root:31 LD -> REG5 REG3
+DEBUG:root:34 ADD ->REG4  + REG5
+DEBUG:root:37 LD -> REG2 REG4
+DEBUG:root:40 ADD ->REG1  + REG2
+DEBUG:root:43 LDC -> REG2 106
+DEBUG:root:46 SV -> REG2 REG1
+DEBUG:root:49 LDC -> REG3 107
+DEBUG:root:52 LD -> REG1 REG3
+DEBUG:root:55 INC -> REG1  + 1
+DEBUG:root:57 LDC -> REG2 107
+DEBUG:root:60 SV -> REG2 REG1
+DEBUG:root:63 LDC -> REG3 105
+DEBUG:root:66 LD -> REG2 REG3
+DEBUG:root:69 SUB -> REG2 - REG1
+DEBUG:root:72 LDC -> REG1 18
+DEBUG:root:78 LDC -> REG1 107
+DEBUG:root:81 LDC -> REG2 0
+DEBUG:root:84 SV -> REG1 REG2
+DEBUG:root:87 LDC -> REG3 106
+DEBUG:root:90 LD -> REG1 REG3
+DEBUG:root:93 LDC -> REG2 0
+DEBUG:root:96 PRT -> REG2 REG1
+DEBUG:root:99 HLT
+```
+
