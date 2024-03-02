@@ -190,3 +190,93 @@ Register file:
 - hardwired имплементация каждой команды
 
 ## Тестирование
+
+#### hello.klp
+
+```hello.klp
+(fun main(
+        (print("hello world"))
+    )
+)
+```
+
+#### cat.klp
+
+```cat.klp
+( fun main(
+        (setq string (read-line(str)))
+        (print(string))
+    )
+)
+```
+
+#### hello_user_name.klp
+
+```hello_user_name.klp
+(fun main(
+        (print ("> What is your name?\n"))
+        (print("< "))
+        (setq name (read-line(str)))
+        (print ("> Hello, "))
+        (print (name))
+        (print ("!\n"))
+
+    )
+)
+```
+
+
+#### prob5.klp
+
+```prob5.klp
+(fun main(
+       (setq result (1))
+       (setq getNokResult (0))
+       (dotimes (j 19) (
+                (setq argumentOneGetNok (result))
+                (setq argumentTwoGetNok (+ j 2))
+                (getNok())
+                (setq result (getNokResult))
+            )
+       )
+       (print(result))
+    )
+)
+
+(fun getNok(
+       (setq argumentOneGetNod (argumentOneGetNok))
+       (setq argumentTwoGetNod (argumentTwoGetNok))
+       (setq getNodResult (0))
+       (getNod())
+       (setq getNokResult (* argumentOneGetNok argumentTwoGetNok))
+       (setq getNokResult (/ getNokResult getNodResult))
+    )
+)
+
+(fun getNod (
+        (setq length (1))
+        (dotimes (i length) (
+
+                (if(> argumentOneGetNod argumentTwoGetNod)
+                    (setq argumentOneGetNod (% argumentOneGetNod argumentTwoGetNod))
+                    (setq argumentTwoGetNod (% argumentTwoGetNod argumentOneGetNod))
+                )
+
+                (if(& argumentOneGetNod argumentTwoGetNod)
+                    (setq length (+ length 1))
+                    (
+
+                        (setq getNodResult (if(> argumentOneGetNod argumentTwoGetNod)
+                            (argumentOneGetNod)
+                            (argumentTwoGetNod)
+                            )
+                        )
+                        (setq length (0))
+                    )
+                )
+            )
+        )
+    )
+)
+
+```
