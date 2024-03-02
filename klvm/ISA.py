@@ -214,7 +214,7 @@ def mul(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.MUL.number_of_arguments:
         raise ArgumentsSizeException('mul')
 
-    logging.debug(f'{registers[4] - ISA.MUL.number_of_arguments } {ISA.MUL.name} -> '
+    logging.debug(f'{registers[4] - ISA.MUL.number_of_arguments} {ISA.MUL.name} -> '
                   f'{get_register_name_by_index(arguments[0])} * {get_register_name_by_index(arguments[1])}')
 
     arg1 = to_sign_int(registers[arguments[0]])
@@ -398,7 +398,6 @@ def pop(arguments: list[int], registers: list[int]):
     logging.debug(f'{registers[4] - ISA.POP.number_of_arguments} {ISA.POP.name}')
 
 
-
 def ret(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.RET.number_of_arguments:
         raise ArgumentsSizeException('ret')
@@ -516,8 +515,6 @@ def mod(arguments: list[int], registers: list[int]):
                   f'{get_register_name_by_index(arguments[0])} % {get_register_name_by_index(arguments[1])}')
 
 
-
-
 def prt(arguments: list[int], registers: list[int]):
     if len(arguments) != ISA.PRT.number_of_arguments:
         raise ArgumentsSizeException('prt')
@@ -558,7 +555,7 @@ def rdl(arguments: list[int], registers: list[int]):
         raise ArgumentsSizeException('rdl')
 
     logging.debug(f'{registers[4] - ISA.RDL.number_of_arguments} {ISA.RDL.name} -> '
-                  f'{arguments[0]} {get_register_name_by_index(arguments[1])}')
+                  f'{get_register_name_by_index(arguments[0])}')
 
     console = IO.Console()
     console.read()
